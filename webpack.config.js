@@ -1,15 +1,16 @@
 var path = require('path')
 var webpack = require('webpack')
+const utils = require('./utils')
 const ExtractTextPlugin = require ('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    style: './src/style.js',
-    yw: './src/index.js',
+    style: './components/style.js',
+    yw: './components/index.js',
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    path: path.resolve(__dirname, './cdist'),
+    publicPath: '/cdist/',
     filename: '[name].js',
     library: 'Yw',
     libraryTarget: 'umd'
@@ -50,13 +51,21 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+        }
       }
     ]
   },
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, './src')
+      '@': path.resolve(__dirname, './components')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },

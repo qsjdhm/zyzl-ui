@@ -3,6 +3,10 @@
     <img src="@/assets/logo.png">
     <h1>{{ msg }}</h1>
     <div class="pb48 underline">
+
+      <el-input-number v-model="num" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
+      <yw-abc></yw-abc>
+
       <h2>Button组件</h2>
       <p>1.基础样式：type</p>
       <yw-button>default</yw-button>
@@ -97,12 +101,16 @@ export default {
       show3: false,
       show4: false,
       size: '',
+      num: 1
     }
   },
   methods: {
     showSize(item) {
       this.size = item
       this.show4 = true
+    },
+    handleChange(value) {
+      console.log(value);
     }
   }
 }
